@@ -31,4 +31,4 @@ const result = {
     },
   ],
 };
-console.log('result', result);
+console.log("result", result);
