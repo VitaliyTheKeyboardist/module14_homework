@@ -11,7 +11,7 @@ const jsonString = `{
       "prof": "pilot"
      }
     ]
-   }`;
+   }`; 
 const data = JSON.parse(jsonString);
 const list = data.list;
 const firstListItem = list[0];
