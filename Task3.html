@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task3</title>
+    <style>
+      .card_image {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <input class="input" type="text" />
+    <button class="button" type="submit">Отправить</button>
+    <div class="httpResponse">Результат запроса</div>
+    <script>
+      const button = document.querySelector(".button")
+      button.addEventListener("click", () => {
+        getXmlResponse()
+      })
+      const resultResponse = document.querySelector(".httpResponse")
+      function getXmlResponse() {
+        const value = document.querySelector(".input").value
+        if (value < 1 || value > 10) {
+          alert("число вне диапазона от 1 до 10")
+        } else {
+          let xhrRequest = new XMLHttpRequest()
+          xhrRequest.open("GET", `https://picsum.photos/v2/list?limit=${value}`)
+          xhrRequest.onload = function () {
+            const result = JSON.parse(xhrRequest.response)
+            let images = ""
+            result.forEach((item, index) => {
+              const image = `
+          <div class="image">
+            <img 
+              src="${item.download_url}"
+              class="card_image">
+            <p>${item.author}</p>
+          `
+              images = images + image
+            })
+            resultResponse.innerHTML = images
+          }
+          xhrRequest.send()
+        }
+      }
+    </script>
+  </body>
+</html>
