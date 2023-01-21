@@ -28,7 +28,10 @@
         } else {
           let xhrRequest = new XMLHttpRequest()
           xhrRequest.open("GET", `https://picsum.photos/v2/list?limit=${value}`)
-          xhrRequest.onload = function () {
+          
+          xhrRequest.onerror = () => console.log('Ошибка запроса')
+          
+          xhrRequest.onload = () => {
             const result = JSON.parse(xhrRequest.response)
             let images = ""
             result.forEach((item, index) => {

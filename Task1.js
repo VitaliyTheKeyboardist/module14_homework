@@ -20,24 +20,21 @@ const xmlStudents = `
 const parser = new DOMParser()
 
 const xmlDOMListStudents = parser.parseFromString(xmlStudents, "text/xml")
-const studentsList = xmlDOMListStudents.querySelector("list")
-const firstStudentNode = studentsList.firstElementChild
-const firstStudentNameNode = firstStudentNode.querySelector("name")
-const FirstStudentfirstName = firstStudentNameNode.querySelector("first")
-const FirstStudentSecondName = firstStudentNameNode.querySelector("second")
-const firstStudentAge = firstStudentNode.querySelector("age")
-const firstStudentProf = firstStudentNode.querySelector("prof")
+const studentsList = xmlDOMListStudents.querySelectorAll("student")
 
-const firstStudentNameAttr = firstStudentNameNode.getAttribute("lang")
+let students = {}
+let arr = []
+studentsList.forEach((student) => {
+  arr.push(students = {
+  name: `${student.querySelector('first').textContent} ${student.querySelector('second').textContent}`,
+    age: student.querySelector('age').textContent,
+    prof: student.querySelector('prof').textContent,
+    lang: student.querySelector('name').getAttribute('lang')
+})
+})
 
-const result = {
-  list: [
-    {
-      name: `${FirstStudentfirstName.textContent} ${FirstStudentSecondName.textContent}`,
-      age: firstStudentAge.textContent,
-      prof: firstStudentProf.textContent,
-      lang: firstStudentNameAttr,
-    },
-  ],
+let result = {
+  list: arr
 }
+
 console.log(result)
