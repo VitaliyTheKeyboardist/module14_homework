@@ -72,6 +72,7 @@
               localStorage.setItem("dataImage", JSON.stringify(data))
               getImageToPage(data)
             })
+            .catch(() => console.log('Ошибка запроса'))
         }
       }
     </script>

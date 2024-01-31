@@ -35,6 +35,7 @@
               resultResponse.innerHTML = `<img src=${response.url}>`
             }
           )
+          .catch(() => console.log('Ошибка запроса'))
         }
       }
     </script>
