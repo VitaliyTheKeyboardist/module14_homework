@@ -41,3 +41,5 @@ const result = {
   ],
 }
 console.log(result)
+console.log(firstStudentNameAttr)
+
